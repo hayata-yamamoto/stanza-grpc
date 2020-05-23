@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package stanza.grpc.v1;
+
+import "google/api/annotations.proto";
+
+
+service Stanza {
+  rpc RecognizeSentence (RecognizeSentenceRequest) returns (RecognizeSentenceResponse) {
+    option (google.api.http) = {
+      get: "/v1/recognize"
+      body: "*"
+    };
+  }
+}
+
+message RecognizeSentenceRequest {
+  string sentence = 1;
+}
+
+message RecognizeSentenceResponse {
+  string sentence = 1;
+  string recognized_result = 2;
+}
+
