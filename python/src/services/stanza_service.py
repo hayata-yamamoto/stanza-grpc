@@ -5,7 +5,6 @@ from typing import Any
 
 import stanza
 import grpc
-from overrides import overrides
 
 from src.proto import stanza_pb2, stanza_pb2_grpc
 from src.usecases.stanza_usecase import StanzaUsecase
@@ -35,7 +34,6 @@ class StanzaService(stanza_pb2_grpc.StanzaServicer):
             sentence=request.sentence,
             recognized_result=json.dumps(res.to_dict()))
 
-    @overrides
     def RecognizeSentence(
         self, request: stanza_pb2.RecognizeSentenceRequest,
         contenxt: grpc.ServicerContext

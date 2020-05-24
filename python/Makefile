@@ -1,10 +1,7 @@
 default: | help
 
 protoc: ## compile .proto into .py ## make protoc
-	poetry run python -m grpc_tools.protoc \
-		-I./../proto \
-		--python_out=./src/proto \
-		--grpc_python_out=./src/proto stanza.proto health.proto
+	poetry run python src/commands/genproto.py
 
 format: ## format codes ## make format
 	poetry run yapf -r -i -vv --style pep8 .

@@ -1,5 +1,5 @@
 import os
-from abc import ABC, abstractmethod
+from abc import ABC, abstractstaticmethod
 from dataclasses import dataclass
 from typing import Any, Dict
 
@@ -7,17 +7,17 @@ import environs
 
 
 class AbstractEnv(ABC):
-    @abstractmethod
+    @abstractstaticmethod
     def to_dict() -> Dict[str, Any]:
         pass
 
-    @abstractmethod
+    @abstractstaticmethod
     def is_production() -> bool:
         pass
 
 
 @dataclass(frozen=True, eq=True)
-class Env:
+class Env(AbstractEnv):
     env = environs.Env()
     env.read_env()
 
@@ -28,8 +28,10 @@ class Env:
 
     LANGUAGE: str = env.str("LANGUAGE", 'en')
 
-    def to_dict(self) -> Dict[str, Any]:
-        return env.dump()
+    @staticmethod
+    def to_dict() -> Dict[str, Any]:
+        return Env.env.dump()
 
-    def is_production(self) -> bool:
-        return self.MODE == 'production'
+    @staticmethod
+    def is_production() -> bool:
+        return Env.MODE == 'production'

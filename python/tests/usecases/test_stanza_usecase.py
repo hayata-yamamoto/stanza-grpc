@@ -8,6 +8,7 @@ from src.usecases.stanza_usecase import StanzaUsecase
 def stanza_pipeline():
     return stanza.Pipeline('en')
 
+
 def test_init(stanza_pipeline):
     usecase = StanzaUsecase(stanza_pipeline)
     assert isinstance(usecase, StanzaUsecase)
@@ -15,7 +16,6 @@ def test_init(stanza_pipeline):
 
 def test_recognize(stanza_pipeline):
     usecase = StanzaUsecase(stanza_pipeline)
-
     """case
     If a single sentence was input, this function return 
     """
@@ -43,7 +43,6 @@ def test_recognize(stanza_pipeline):
     assert len(res[0]) == len(reocognized_lemmas)
     # assert res[0][0] == a_record
     # assert [r.get('lemma') for r in res[0]] == reocognized_lemmas
-
     """case
     If multiple sentence was input, this function return 
     """
