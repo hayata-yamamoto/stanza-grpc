@@ -1,0 +1,11 @@
+*.egg-info
+.venv
+__pycache__
+.mypy_cache
+.pytest_cache
+.report
+.python-version
+.yapfignore
+mypy.ini
+pytest.ini
+.flake8

@@ -1,16 +1,13 @@
 # Stanza gRPC server 
 
+## Get Started
 
-## Prerequisite
+Please setup poetry.
 
-
-## Installation 
-
+```bash 
+$ make protoc 
+$ make server
 ```
 
 
-## Usage 
 
-**Local**
-
-**Docker**
