@@ -16,10 +16,7 @@ class StanzaService(stanza_pb2_grpc.StanzaServicer):
     def __init__(self, language: str) -> None:
         self.usecase = StanzaUsecase(stanza.Pipeline(language))
 
-    def recognize_sentence(
-        self, request: stanza_pb2.RecognizeSentenceRequest,
-        contenxt: grpc.ServicerContext
-    ) -> stanza_pb2.RecognizeSentenceResponse:
+    def recognize_sentence(self, sentence: str) -> str:
         """This function throw string content to stanza pipeline via StanzaUsecase. 
 
         Args:
@@ -29,15 +26,10 @@ class StanzaService(stanza_pb2_grpc.StanzaServicer):
         Returns:
             stanza_pb2.RecognizeSentenceResponse: This response contains recognized result
         """
-        res = self.usecase.recognize(request.sentence)
-        return stanza_pb2.RecognizeSentenceResponse(
-            sentence=request.sentence,
-            recognized_result=json.dumps(res.to_dict()))
-
-    def RecognizeSentence(
-        self, request: stanza_pb2.RecognizeSentenceRequest,
-        contenxt: grpc.ServicerContext
-    ) -> stanza_pb2.RecognizeSentenceResponse:
+        res = self.usecase.recognize(sentence)
+        return res
+    
+    def RecognizeSentence(self, request, context):
         """This function is interface of recognize_sentence function
 
         Args:
@@ -47,4 +39,7 @@ class StanzaService(stanza_pb2_grpc.StanzaServicer):
         Returns:
             stanza_pb2.RecognizeSentenceResponse: 
         """
-        return self.recognize_sentence(request, contenxt)
+        logger.debug("RecognizedSentence was passed")
+        res = self.recognize_sentence(request.sentence)
+        return stanza_pb2.RecognizeSentenceResponse(
+            recognized_result=res)

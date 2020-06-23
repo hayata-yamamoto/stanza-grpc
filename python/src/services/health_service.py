@@ -13,7 +13,10 @@ logger = getLogger(__name__)
 class HealthService(health_pb2_grpc.HealthServicer):
     def Check(self, request: health_pb2.HealthCheckRequest,
               context: grpc.ServicerContext) -> health_pb2.HealthCheckResponse:
-        return HealthUsecase.alive()
+        logger.debug("check was passed")
+        is_alive = HealthUsecase.alive()
+        return health_pb2.HealthCheckResponse(is_alive=is_alive)
 
-    def Watch(self, request) -> Iterator[bool]:
-        yield HealthUsecase.alive()
+    def Watch(self, request, context) -> Iterator[bool]:
+        is_alive = HealthUsecase.alive()
+        yield health_pb2.HealthCheckResponse(is_alive=is_alive)

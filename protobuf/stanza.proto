@@ -19,7 +19,6 @@ message RecognizeSentenceRequest {
 }
 
 message RecognizeSentenceResponse {
-  string sentence = 1;
   string recognized_result = 2;
 }
 

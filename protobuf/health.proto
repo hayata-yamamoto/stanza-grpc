@@ -4,9 +4,7 @@ package health;
 
 import "google/api/annotations.proto";
 
-message HealthCheckRequest {
-    string service = 1;
-}
+message HealthCheckRequest {}
 
 message HealthCheckResponse {
     bool is_alive = 1;

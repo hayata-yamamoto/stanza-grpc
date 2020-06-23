@@ -1,7 +1,7 @@
 default: | help
 
 protoc: ## compile .proto into .py ## make protoc
-	poetry run python src/commands/genproto.py
+	poetry run python commands/genproto.py
 
 format: ## format codes ## make format
 	poetry run yapf -r -i -vv --style pep8 .
