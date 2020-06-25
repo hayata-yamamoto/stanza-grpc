@@ -1,6 +1,20 @@
-# Stanza Server w/ gRPC 
+# Stanza gRPC server 
+
+## Get Started
+
+```bash 
+$ make protoc 
+$ make server
+```
+
+## 
+
+```bash 
+$ grpcurl -plaintext localhost:50051 health.Health/Check
+```
 
 ## TODO
-- [x] gRPC stanza server 
-- [ ] REST stanza server 
-- [ ] stanza server w/ web server (side car)
+- [x] enable grpc server
+- [ ] enable rest api
+- [ ] enable cilent sdk
+
