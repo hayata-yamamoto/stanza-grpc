@@ -4,7 +4,7 @@ import logging
 
 
 def main() -> None:
-    new_stream_logger(level=logging.DEBUG)
+    new_stream_logger(level=logging.INFO)
     server = init_server()
 
     server.start()

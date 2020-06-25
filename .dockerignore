@@ -9,3 +9,5 @@ __pycache__
 mypy.ini
 pytest.ini
 .flake8
+src/tests
+proto
