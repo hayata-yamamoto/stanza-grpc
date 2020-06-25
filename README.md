@@ -51,6 +51,41 @@ docker build -t stanza-grpc .
 ```
 
 
+## Server features
+
+### Endpoints
+
+```bash 
+$ grpcurl -plaintext localhost:50051 list
+grpc.reflection.v1alpha.ServerReflection
+health.Health
+stanza.grpc.v1.Stanza
+```
+
+<details><summary>reflection describe</summary>
+
+```bash
+$ grpcurl -plaintext localhost:50051 describe 
+grpc.reflection.v1alpha.ServerReflection is a service:
+service ServerReflection {
+  rpc ServerReflectionInfo ( stream .grpc.reflection.v1alpha.ServerReflectionRequest ) returns ( stream .grpc.reflection.v1alpha.ServerReflectionResponse );
+}
+health.Health is a service:
+service Health {
+  rpc Check ( .health.HealthCheckRequest ) returns ( .health.HealthCheckResponse ) {
+    option (.google.api.http) = { get:"/health"  };
+  }
+  rpc Watch ( .health.HealthCheckRequest ) returns ( stream .health.HealthCheckResponse );
+}
+stanza.grpc.v1.Stanza is a service:
+service Stanza {
+  rpc Recognize ( .stanza.grpc.v1.RecognizeRequest ) returns ( .stanza.grpc.v1.RecognizeResponse ) {
+    option (.google.api.http) = { get:"/v1/recognize" body:"*"  };
+  }
+}
+```
+</detail>
+
 
 ## TODO
 - [x] enable grpc server
