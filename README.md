@@ -19,7 +19,7 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 # if you want to make virtual env on this directory
 # poetry config virtualenvs.in-project true
 
-poetry sync
+poetry install
 
 make protoc  # compile .proto 
 make start-server # start grpc server
