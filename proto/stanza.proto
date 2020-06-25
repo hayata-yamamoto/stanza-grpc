@@ -5,8 +5,7 @@ package stanza.grpc.v1;
 import "google/api/annotations.proto";
 
 service Stanza {
-  rpc Recognize(RecognizeRequest)
-      returns (RecognizeResponse) {
+  rpc Recognize(RecognizeRequest) returns (RecognizeResponse) {
     option (google.api.http) = {
       get: "/v1/recognize"
       body: "*"
